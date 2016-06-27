@@ -1,0 +1,347 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "Romana Tenant API",
+        "description": "Romana Tenant manages tenants and segments in Romana network",
+        "version": "0.9.0"
+    },
+    "host": "tenant.api.romana.io",
+    "schemes": [
+        "https",
+        "http"
+    ],
+    "basePath": "/",
+    "produces": [
+        "application/json"
+    ],
+    "paths": {
+        "/tenants": {
+            "get": {
+                "summary": "lists all tenants",
+                "description": "lists all tenants \n",
+                "tags": [
+                    "Get",
+                    "Tenant"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful execution",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/RomanaTenant"
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "summary": "deletes Romana tenant ( NOT IMPLEMENTED )",
+                "description": "deletes Romana tenant \n",
+                "parameters": [
+                    {
+                        "name": "RomanaTenant",
+                        "in": "body",
+                        "required": true,
+                        "description": "https://github.com/romana/core/blob/master/tenant/store.go#L42",
+                        "schema": {
+                            "$ref": "#/definitions/RomanaTenant"
+                        }
+                    }
+                ],
+                "tags": [
+                    "Delete",
+                    "Tenant"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful execution",
+                        "schema": {
+                            "$ref": "#/definitions/RomanaTenant"
+                        }
+                    },
+                    "500": {
+                        "description": "Unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    }
+                },
+                "deprecated": true
+            },
+            "post": {
+                "summary": "registers new tenant",
+                "description": "registers new tenant\n",
+                "parameters": [
+                    {
+                        "name": "RomanaTenant",
+                        "in": "body",
+                        "required": true,
+                        "description": "https://github.com/romana/core/blob/master/tenant/store.go#L42",
+                        "schema": {
+                            "$ref": "#/definitions/RomanaTenant"
+                        }
+                    }
+                ],
+                "tags": [
+                    "Post",
+                    "Tenant"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful execution",
+                        "schema": {
+                            "$ref": "#/definitions/RomanaTenant"
+                        }
+                    },
+                    "500": {
+                        "description": "Unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    }
+                }
+            }
+        },
+        "/tenants/{tenantId}": {
+            "get": {
+                "summary": "finds tenant by id",
+                "parameters": [
+                    {
+                        "name": "tenantId",
+                        "in": "path",
+                        "description": "ID of tenant to return",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    }
+                ],
+                "tags": [
+                    "Get",
+                    "Tenant"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful execution",
+                        "schema": {
+                            "$ref": "#/definitions/RomanaTenant"
+                        }
+                    },
+                    "500": {
+                        "description": "Unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    }
+                }
+            }
+        },
+        "/tenants/{tenantId}/segments": {
+            "get": {
+                "summary": "list all segments for given tenant",
+                "parameters": [
+                    {
+                        "name": "tenantId",
+                        "in": "path",
+                        "description": "ID of tenant",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    }
+                ],
+                "tags": [
+                    "Get",
+                    "Tenant"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful execution",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/RomanaSegment"
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    }
+                }
+            }
+        },
+        "/tenants/{tenantId}/segments/{segmentId}": {
+            "get": {
+                "summary": "finds segment by id",
+                "parameters": [
+                    {
+                        "name": "tenantId",
+                        "in": "path",
+                        "description": "ID of tenant",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    {
+                        "name": "segmentId",
+                        "in": "path",
+                        "description": "ID of segment",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    }
+                ],
+                "tags": [
+                    "Get",
+                    "Tenant"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful execution",
+                        "schema": {
+                            "$ref": "#/definitions/RomanaSegment"
+                        }
+                    },
+                    "500": {
+                        "description": "Unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    }
+                }
+            }
+        },
+        "/segment": {
+            "delete": {
+                "summary": "deletes Romana segment ( NOT IMPLEMENTED )",
+                "description": "deletes Romana segment \n",
+                "parameters": [
+                    {
+                        "name": "RomanaSegment",
+                        "in": "body",
+                        "required": true,
+                        "description": "https://github.com/romana/core/blob/master/tenant/store.go#L50",
+                        "schema": {
+                            "$ref": "#/definitions/RomanaSegment"
+                        }
+                    }
+                ],
+                "tags": [
+                    "Delete",
+                    "Segment"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful execution",
+                        "schema": {
+                            "$ref": "#/definitions/RomanaSegment"
+                        }
+                    },
+                    "500": {
+                        "description": "Unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    }
+                },
+                "deprecated": true
+            },
+            "post": {
+                "summary": "registers new segment",
+                "description": "registers new segment\n",
+                "parameters": [
+                    {
+                        "name": "RomanaSegment",
+                        "in": "body",
+                        "required": true,
+                        "description": "https://github.com/romana/core/blob/master/tenant/store.go#L50",
+                        "schema": {
+                            "$ref": "#/definitions/RomanaSegment"
+                        }
+                    }
+                ],
+                "tags": [
+                    "Post",
+                    "Tenant"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful execution",
+                        "schema": {
+                            "$ref": "#/definitions/RomanaSegment"
+                        }
+                    },
+                    "500": {
+                        "description": "Unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "RomanaSegment": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string",
+                    "description": "Required for addition"
+                },
+                "external_id": {
+                    "type": "string",
+                    "description": "Required for addition"
+                },
+                "tenant_id": {
+                    "type": "number",
+                    "description": "Required"
+                },
+                "segment_id": {
+                    "type": "number",
+                    "description": "Required for deletion"
+                }
+            }
+        },
+        "RomanaTenant": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string",
+                    "description": "Required for addition"
+                },
+                "external_id": {
+                    "type": "string",
+                    "description": "Required for addition"
+                },
+                "tenant_id": {
+                    "type": "number",
+                    "description": "Required for deletion"
+                }
+            }
+        },
+        "Error": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "message": {
+                    "type": "string"
+                },
+                "fields": {
+                    "type": "string"
+                }
+            }
+        }
+    }
+}
